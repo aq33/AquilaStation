@@ -37,11 +37,11 @@
 	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
 	if(!D)
 		return FALSE
-	if(length(D.blood_DNA))
-		D.add_latent_blood_DNA(D.blood_DNA)
+	// krew zwykłą ścieżką czyszczenia: zdejmuje nakładkę „zakrwawiony”, a DNA zostaje utajone dla luminolu
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+	D = GetComponent(/datum/component/forensics) || AddComponent(/datum/component/forensics)
 	D.wipe_fingerprints()
 	D.wipe_fibers()
-	D.wipe_blood_DNA()
 	LAZYSET(D.cleaning_residue, residue, world.time)
 	if(fiber)
 		D.add_fiber_list(list(fiber))
@@ -58,7 +58,7 @@
 	if(!isobj(target) || ismob(target) || !user.Adjacent(target))
 		return FALSE
 	user.visible_message("<span class='notice'>[user] starannie wyciera [target] [tool].</span>", "<span class='notice'>Zaczynasz starannie wycierać [target] [tool], żeby zatrzeć ślady...</span>")
-	if(!do_after(user, EVIDENCE_WIPE_TIME, target))
+	if(!do_after(user, EVIDENCE_WIPE_TIME, target = target))
 		return TRUE
 	target.aq_wipe_evidence(residue, fiber)
 	to_chat(user, "<span class='notice'>Ścierasz ślady z [target].</span>")

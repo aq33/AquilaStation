@@ -17,10 +17,10 @@
 
 /// Wolna częstotliwość spoza kanałów działów (kHz × 10, jak w radiu)
 /proc/aq_random_bug_frequency()
-	var/freq = rand(MIN_FREE_FREQ, MAX_FREE_FREQ)
+	var/freq = rand(MIN_FREQ, MAX_FREQ) // zakres zwykłego radia, żeby dało się nastawić odsłuch
 	if(!(freq % 2)) // radio używa nieparzystych
 		freq++
-	return sanitize_frequency(freq, TRUE)
+	return sanitize_frequency(freq)
 
 /obj/item/clothing/accessory/spy_bug
 	/// Mikrofon w środku
@@ -29,6 +29,7 @@
 /obj/item/clothing/accessory/spy_bug/Initialize(mapload)
 	. = ..()
 	microphone = new(src)
+	microphone.broadcasting = FALSE // nadaje tylko przez Hear etui, inaczej każda wypowiedź szłaby dwa razy
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 	desc = "Zaawansowany sprzęt szpiegowski w kształcie kieszonkowego etui na długopisy. Ma wbudowaną kamerę 360 stopni i mikrofon, który nadaje na prywatnej częstotliwości."
 
@@ -44,10 +45,10 @@
 /obj/item/clothing/accessory/spy_bug/attack_self(mob/user)
 	if(!microphone)
 		return ..()
-	var/new_freq = tgui_input_number(user, "Częstotliwość mikrofonu (np. 145.9)", name, microphone.frequency / 10, MAX_FREE_FREQ / 10, MIN_FREE_FREQ / 10, round_value = FALSE)
+	var/new_freq = tgui_input_number(user, "Częstotliwość mikrofonu (np. 145.9)", name, microphone.frequency / 10, MAX_FREQ / 10, MIN_FREQ / 10, round_value = FALSE)
 	if(isnull(new_freq) || !user.is_holding(src))
 		return
-	microphone.set_frequency(sanitize_frequency(round(new_freq * 10), TRUE))
+	microphone.set_frequency(sanitize_frequency(round(new_freq * 10)))
 	to_chat(user, "<span class='notice'>Mikrofon nadaje teraz na [format_frequency(microphone.frequency)].</span>")
 
 /obj/item/clothing/accessory/spy_bug/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
@@ -65,7 +66,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/radio/aq_bug_mic/cigarettes/examine(mob/user)
-	. = ..()
+	. = list("[get_examine_string(user, TRUE)].", desc) // bez opisu radia z bazy, który zdradzałby pluskwę
 	if(user.mind?.has_antag_datum(/datum/antagonist))
 		. += "<span class='notice'>Ukryty mikrofon nadaje na [format_frequency(frequency)]. Ustaw tę częstotliwość na swoim radiu.</span>"
 

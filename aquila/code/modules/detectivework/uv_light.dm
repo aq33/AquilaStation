@@ -1,5 +1,5 @@
 // AQUILA - lampa UV (Polaris i Baystation12 code/modules/detectivework/tools/uvlight.dm, sprite z Polarisa).
-// Włączona co sekundę ujawnia w promieniu 3 kratek zmytą krew na podłodze i przedmiotach, ale tylko na chwilę:
+// Włączona co sekundę (SSprocessing) ujawnia w promieniu 3 kratek zmytą krew na podłodze i przedmiotach, ale tylko na chwilę:
 // ślady gasną zaraz po odejściu lampy. Luminol zostaje do oprysku miejsca zbrodni, ludzi i ubrań (świeci 60 s),
 // a lampa do przeczesania korytarza. Oba wołają to samo ujawnianie, lampa nie skraca świecenia po luminolu.
 
@@ -29,10 +29,10 @@
 	set_light(on ? UV_LIGHT_RANGE : 0, 2)
 	playsound(src, 'sound/weapons/empty.ogg', 20, TRUE)
 	if(on)
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSprocessing, src)
 		uv_scan()
 	else
-		STOP_PROCESSING(SSobj, src)
+		STOP_PROCESSING(SSprocessing, src)
 	if(user)
 		to_chat(user, "<span class='notice'>[on ? "Włączasz" : "Wyłączasz"] [src].</span>")
 
@@ -42,7 +42,7 @@
 		toggle()
 
 /obj/item/aq_uv_light/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/item/aq_uv_light/process(delta_time)

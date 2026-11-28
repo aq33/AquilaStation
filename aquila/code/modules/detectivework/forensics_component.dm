@@ -84,7 +84,7 @@
 		luminol_overlay.blend_mode = BLEND_INSET_OVERLAY
 		ADD_KEEP_TOGETHER(I, "luminol")
 		I.add_overlay(luminol_overlay)
-	addtimer(CALLBACK(src, PROC_REF(luminol_fade)), luminol_until - world.time, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(luminol_fade)), luminol_until - world.time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 	return !was_glowing
 
 /datum/component/forensics/proc/luminol_fade()

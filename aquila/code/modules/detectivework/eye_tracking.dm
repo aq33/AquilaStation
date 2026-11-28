@@ -17,8 +17,13 @@
 	. = ..()
 	REMOVE_TRAIT(user, TRAIT_AQ_EYE_TRACKING, REF(src))
 
-/mob/living/run_examinate(atom/A)
+/mob/living/Initialize(mapload)
 	. = ..()
+	RegisterSignal(src, COMSIG_MOB_EXAMINATE, PROC_REF(aq_on_examinate_gaze))
+
+/// Oględziny się udały (sygnał wysyła baza run_examinate dopiero po nich)
+/mob/living/proc/aq_on_examinate_gaze(datum/source, atom/A)
+	SIGNAL_HANDLER
 	aq_report_gaze(A)
 
 /// Powiadamia noszących okulary śledcze w pobliżu, na co patrzy ten mob. Zwraca liczbę powiadomionych (test)

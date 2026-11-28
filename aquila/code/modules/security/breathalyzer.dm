@@ -23,7 +23,7 @@
 		to_chat(user, "<span class='warning'>[subject] nie oddycha, alkomat nic nie pokaże.</span>")
 		return TRUE
 	user.visible_message("<span class='notice'>[user] przykłada [src] do ust [subject].</span>", "<span class='notice'>Przykładasz [src] do ust [subject].</span>")
-	if(!do_after(user, 2 SECONDS, subject))
+	if(!do_after(user, 2 SECONDS, target = subject))
 		return TRUE
 	log_combat(user, subject, "breathalyzed", src)
 	to_chat(user, "<div class='examine_block'>[breath_report(subject)]</div>")

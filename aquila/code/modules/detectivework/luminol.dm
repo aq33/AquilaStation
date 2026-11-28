@@ -57,7 +57,7 @@
 	if(!glow && icon_state)
 		glow = emissive_appearance(icon, icon_state, alpha = 150)
 		overlays += glow
-	addtimer(CALLBACK(src, PROC_REF(conceal)), revealed_until - world.time, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(conceal)), revealed_until - world.time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 
 /obj/effect/blood_trace/proc/conceal()
 	revealed = FALSE

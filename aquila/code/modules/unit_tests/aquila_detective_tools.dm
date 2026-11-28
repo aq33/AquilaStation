@@ -68,10 +68,13 @@
 	TEST_ASSERT(HAS_TRAIT(watcher, TRAIT_AQ_EYE_TRACKING), "Okulary nie dały śledzenia wzroku")
 	TEST_ASSERT_EQUAL(suspect.aq_report_gaze(looked_at), 1, "Okulary nie pokazały spojrzenia")
 
-	// Pluskwa: mikrofon w wolnym zakresie częstotliwości i nadaje
+	// Pluskwa: mikrofon na częstotliwości, którą da się nastawić na zwykłym radiu; nadaje tylko przez etui (bez podwójnych wiadomości)
 	var/obj/item/clothing/accessory/spy_bug/bug = allocate(/obj/item/clothing/accessory/spy_bug)
-	TEST_ASSERT(bug.microphone?.broadcasting, "Pluskwa nie ma nadającego mikrofonu")
-	TEST_ASSERT(bug.microphone.frequency >= MIN_FREE_FREQ && bug.microphone.frequency <= MAX_FREE_FREQ, "Mikrofon na zajętej częstotliwości: [bug.microphone.frequency]")
+	TEST_ASSERT(bug.microphone, "Pluskwa nie ma mikrofonu")
+	TEST_ASSERT(!bug.microphone.broadcasting, "Mikrofon w etui nadaje sam, wypowiedzi pójdą podwójnie")
+	TEST_ASSERT(bug.microphone.frequency >= MIN_FREQ && bug.microphone.frequency <= MAX_FREQ, "Mikrofon poza zakresem zwykłego radia: [bug.microphone.frequency]")
+	var/obj/item/radio/aq_bug_mic/cigarettes/cig_bug = allocate(/obj/item/radio/aq_bug_mic/cigarettes)
+	TEST_ASSERT(cig_bug.broadcasting, "Pluskwa papierosowa nie nadaje")
 
 	// Lampa UV: ujawnia zmytą krew w zasięgu na krótko i nie skraca świecenia po luminolu
 	var/turf/near = locate(center.x + 2, center.y, center.z)
@@ -100,11 +103,23 @@
 	var/list/targets = aq_noir_targets(suspect)
 	TEST_ASSERT((stain in targets) && (casing in targets), "Noir nie podświetla krwi albo łuski")
 	TEST_ASSERT(!(clean_item in targets), "Noir podświetla przedmiot bez śladów")
+	// Regresja z review: przedmiot z samą zmytą krwią nie świeci w noir (od tego luminol i lampa)
+	var/obj/item/stack/sheet/iron/washed = allocate(/obj/item/stack/sheet/iron, locate(center.x + 3, center.y + 2, center.z))
+	washed.add_latent_blood_DNA(list("TESTDNA" = "O+"))
+	TEST_ASSERT(!(washed in aq_noir_targets(suspect)), "Noir pokazuje zmytą krew")
 	suspect.apply_status_effect(/datum/status_effect/aq_noir)
 	TEST_ASSERT(suspect.has_status_effect(/datum/status_effect/aq_noir), "Tryb noir się nie włączył")
 	suspect.remove_status_effect(/datum/status_effect/aq_noir)
 	TEST_ASSERT(!suspect.has_status_effect(/datum/status_effect/aq_noir), "Tryb noir się nie wyłączył")
 	TEST_ASSERT(!aq_is_detective(suspect), "Każdy jest detektywem")
+
+/// Plamy krwi usuwane z allocated zostawiają utajone ślady na kafelkach pokoju: sprzątamy je dla kolejnych testów
+/datum/unit_test/aquila_detective_tools/Destroy()
+	var/list/room = (run_loc_floor_bottom_left && run_loc_floor_top_right) ? block(run_loc_floor_bottom_left, run_loc_floor_top_right) : list()
+	. = ..() // usuwa allocated, plamy krwi zostawiają wtedy ślady
+	for(var/turf/T as anything in room)
+		for(var/obj/effect/blood_trace/trace in T)
+			qdel(trace)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

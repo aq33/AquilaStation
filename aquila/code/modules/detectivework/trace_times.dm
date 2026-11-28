@@ -31,6 +31,11 @@
 		if(!(fiber in before))
 			LAZYSET(fiber_times, fiber, world.time)
 
+/datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers)
+	. = ..()
+	for(var/dna_key in new_blood_DNA)
+		LAZYSET(blood_times, dna_key, world.time)
+
 /datum/component/forensics/add_blood_DNA(list/dna)
 	. = ..()
 	if(.)

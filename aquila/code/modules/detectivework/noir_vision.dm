@@ -13,8 +13,10 @@
 	for(var/atom/movable/thing in view(range, viewer))
 		if(istype(thing, /obj/effect/decal/cleanable/blood) || istype(thing, /obj/effect/decal/cleanable/blood/trail_holder) || istype(thing, /obj/item/ammo_casing) || istype(thing, /obj/item/bullet_fragment))
 			. += thing
-		else if(isitem(thing) && thing.GetComponent(/datum/component/forensics))
-			. += thing
+		else if(isitem(thing))
+			var/datum/component/forensics/D = thing.GetComponent(/datum/component/forensics)
+			if(D && (length(D.fingerprints) || length(D.blood_DNA) || length(D.fibers)))
+				. += thing
 
 /datum/status_effect/aq_noir
 	id = "aq_noir"
@@ -27,16 +29,21 @@
 /datum/status_effect/aq_noir/on_apply()
 	owner.add_client_colour(/datum/client_colour/monochrome)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(refresh_noir))
+	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, PROC_REF(on_examinate))
 	refresh_noir()
 	return TRUE
 
 /datum/status_effect/aq_noir/on_remove()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_EXAMINATE))
 	clear_images()
 	owner.remove_client_colour(/datum/client_colour/monochrome)
 
 /datum/status_effect/aq_noir/tick()
 	refresh_noir()
+
+/datum/status_effect/aq_noir/proc/on_examinate(datum/source, atom/A)
+	SIGNAL_HANDLER
+	owner.aq_noir_clue(A)
 
 /datum/status_effect/aq_noir/proc/clear_images()
 	if(owner.client)
@@ -51,7 +58,7 @@
 	for(var/atom/movable/target as anything in aq_noir_targets(owner))
 		var/image/marker = image(target.icon, target, target.icon_state, ABOVE_ALL_MOB_LAYER, target.dir)
 		marker.plane = ABOVE_LIGHTING_PLANE
-		marker.appearance_flags = RESET_COLOR | KEEP_APART
+		marker.appearance_flags = RESET_COLOR | KEEP_APART | NO_CLIENT_COLOR // monochrom klienta nie gasi czerwieni
 		marker.color = "#FF2020"
 		marker.alpha = 200
 		shown_images += marker
@@ -89,9 +96,8 @@
 /proc/aq_is_detective(mob/user)
 	return user?.mind?.assigned_role == JOB_NAME_DETECTIVE
 
-// Dźwięk tropu przy oględzinach śladu w trybie noir
-/mob/living/run_examinate(atom/A)
-	. = ..()
+// Dźwięk tropu przy oględzinach śladu w trybie noir (wołane z sygnału udanych oględzin, eye_tracking.dm)
+/mob/living/proc/aq_noir_clue(atom/A)
 	if(has_status_effect(/datum/status_effect/aq_noir) && ismovable(A) && (A in aq_noir_targets(src)))
 		playsound_local(get_turf(src), pick('aquila/sound/detective/clue1.ogg', 'aquila/sound/detective/clue2.ogg'), 40, FALSE)
 
