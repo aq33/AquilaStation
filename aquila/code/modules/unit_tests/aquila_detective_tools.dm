@@ -5,6 +5,12 @@
 /// AQUILA - narzędzia detektywa, część 3 planu Żandarmerii (aquila/code/modules/detectivework/):
 /// czas śladu, zacieranie śladów, alkomat, BloodTrak, okulary śledcze, mikrofon pluskwy, lampa UV, tryb noir. Jedna scena.
 /datum/unit_test/aquila_detective_tools
+	/// Licznik nadań mikrofonu pluskwy (lista, żeby handler zmieniał tę samą)
+	var/list/transmission_counter
+
+/datum/unit_test/aquila_detective_tools/proc/count_transmission(datum/source)
+	SIGNAL_HANDLER
+	transmission_counter[1]++
 
 /datum/unit_test/aquila_detective_tools/Run()
 	var/turf/center = run_loc_floor_bottom_left
@@ -69,6 +75,14 @@
 	watcher.equip_to_slot_if_possible(glasses, ITEM_SLOT_EYES)
 	TEST_ASSERT(HAS_TRAIT(watcher, TRAIT_AQ_EYE_TRACKING), "Okulary nie dały śledzenia wzroku")
 	TEST_ASSERT_EQUAL(suspect.aq_report_gaze(looked_at), 1, "Okulary nie pokazały spojrzenia")
+	// Regresja z review: raport tylko po udanych oględzinach (sygnał z bazy), także przez prawdziwe run_examinate
+	var/reports_before = suspect.aq_gaze_reports
+	suspect.run_examinate(looked_at)
+	TEST_ASSERT_EQUAL(suspect.aq_gaze_reports, reports_before + 1, "Udane oględziny nie trafiły do okularów")
+	var/obj/item/pen/gone = new(center)
+	qdel(gone)
+	suspect.run_examinate(gone)
+	TEST_ASSERT_EQUAL(suspect.aq_gaze_reports, reports_before + 1, "Nieudane oględziny trafiły do okularów")
 
 	// Pluskwa: mikrofon na częstotliwości, którą da się nastawić na zwykłym radiu; nadaje tylko przez etui (bez podwójnych wiadomości)
 	var/obj/item/clothing/accessory/spy_bug/bug = allocate(/obj/item/clothing/accessory/spy_bug)
@@ -77,6 +91,14 @@
 	TEST_ASSERT(bug.microphone.frequency >= MIN_FREQ && bug.microphone.frequency <= MAX_FREQ, "Mikrofon poza zakresem zwykłego radia: [bug.microphone.frequency]")
 	var/obj/item/radio/aq_bug_mic/cigarettes/cig_bug = allocate(/obj/item/radio/aq_bug_mic/cigarettes)
 	TEST_ASSERT(cig_bug.broadcasting, "Pluskwa papierosowa nie nadaje")
+	// Regresja z review: jedna wypowiedź obok etui to jedno nadanie (słyszą ją i etui, i radio w środku)
+	var/list/transmissions = list(0)
+	RegisterSignal(bug.microphone, COMSIG_RADIO_MESSAGE, PROC_REF(count_transmission))
+	transmission_counter = transmissions
+	bug.Hear("test", suspect, /datum/language/common, "test", null, list(), list())
+	bug.microphone.Hear("test", suspect, /datum/language/common, "test", null, list(), list())
+	UnregisterSignal(bug.microphone, COMSIG_RADIO_MESSAGE)
+	TEST_ASSERT_EQUAL(transmissions[1], 1, "Wypowiedź obok pluskwy nadana inną liczbę razy")
 
 	// Lampa UV: ujawnia zmytą krew w zasięgu na krótko i nie skraca świecenia po luminolu
 	var/turf/near = locate(center.x + 2, center.y, center.z)
