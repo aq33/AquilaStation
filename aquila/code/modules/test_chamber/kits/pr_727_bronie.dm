@@ -1,8 +1,8 @@
 // Bronie z przeglądu 119 kodów (aquila/code/modules/projectiles/guns/bronie_wybrane.dm)
 
-/datum/test_chamber_kit/pr_bronie_wybrane
+/datum/test_chamber_kit/pr_727
 	name = "Bronie z przeglądu kodów"
-	pr = "aq33/AquilaStation#0"
+	pr = "aq33/AquilaStation#727"
 	description = "Dziesięć nowych broni z amunicją. Sprawdź wygląd w ręku, na plecach i w ekwipunku, dźwięk strzału i tryby ognia (przełącznik trybów). \
 		1) M19C4: seria 3 i ogień ciągły, niebieskie impulsy. 2) Karabin antycząstkowy: w próżni strzela normalnie i urabia skałę, w powietrzu się zacina, przepala strzał, rozładowuje albo wybucha; sam się ładuje. \
 		3) Disabler ma wygląd X-41. 4) AKMS, XL8 (luneta), karabin bojowy (tylko pojedynczo), P90 (seria 3), Atreides (ogień ciągły), M44A (strzela tylko z implantem mindshield: zestaw daje implanter), XM29 (prawy przycisk: bęben 5 granatów). \
