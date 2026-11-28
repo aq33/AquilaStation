@@ -599,7 +599,7 @@
 	if(desired_crime)
 		var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.general)
 		if(R)
-			R.fields["criminal"] = "Incarcerated"
+			GLOB.data_core.set_criminal_status(R, "Incarcerated", aq_record_author(user), desired_crime, announce = FALSE) // AQ EDIT - status w rekordzie ochrony (był ogólny, HUD go nie widział); radio niżej
 			var/crime = GLOB.data_core.createCrimeEntry(desired_crime, null, user.real_name, station_time_timestamp())
 			GLOB.data_core.addCrime(R.fields["id"], crime)
 			investigate_log("New Crime: <strong>[desired_crime]</strong> | Added to [R.fields["name"]] by [key_name(user)]", INVESTIGATE_RECORDS)
@@ -607,6 +607,7 @@
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 
 	var/obj/item/card/id/id = new /obj/item/card/id/prisoner(get_turf(src), desired_sentence * 0.1, desired_crime, desired_name)
+	aq_record_sentence(desired_name, desired_crime, desired_sentence) // AQ EDIT - kartoteka między rundami (aquila/code/modules/security/criminal_history.dm)
 	// AQ EDIT - tłumaczenie, dożywocie zamiast 600 min
 	var/sentence_text = desired_sentence >= MAX_TIMER ? "dożywocie" : "[desired_sentence / 600] min"
 	Radio.talk_into(src, "Więzień [id.registered_name] został osadzony za: [desired_crime]. Wyrok: [sentence_text].")
@@ -724,7 +725,7 @@
 				START_PROCESSING(SSobj, id)
 				var/datum/data/record/R = find_record("name", id.registered_name, GLOB.data_core.general)
 				if(R)
-					R.fields["criminal"] = "Incarcerated"
+					GLOB.data_core.set_criminal_status(R, "Incarcerated", aq_record_author(usr), "ucieczka więźnia", announce = FALSE) // rekord ochrony; radio niżej
 			// AQ EDIT END
 			Radio.talk_into(src, "Czas odbywania kary więźnia [id.registered_name] został zresetowany.")
 			investigate_log("[key_name(usr)] has reset the timer of [id] ([id.loc])", INVESTIGATE_RECORDS)
@@ -780,8 +781,9 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 		playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 
 		var/datum/data/record/R = find_record("name", registered_name, GLOB.data_core.general)
-		if(R)
-			R.fields["criminal"] = "Discharged"
+		var/datum/data/record/sec_record = R && GLOB.data_core.aq_security_record_of(R) // AQ EDIT - nowszy status (np. nowy nakaz) zostaje
+		if(sec_record?.fields["criminal"] == "Incarcerated")
+			GLOB.data_core.set_criminal_status(R, "Discharged", "Terminal GenPop", announce = FALSE) // AQ EDIT - status w rekordzie ochrony (był ogólny, HUD go nie widział)
 
 		if(isliving(loc))
 			to_chat(loc, "<span class='boldnotice'>Odbyłeś karę! Możesz teraz wyjść z więzienia przez bramki i odebrać swoje rzeczy.</span>")

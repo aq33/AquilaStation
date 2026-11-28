@@ -25,6 +25,11 @@
 // Admins can cancel this manually if they are quick enough.
 /datum/config_entry/flag/allow_crew_wake_request_auto_accept
 
+// Ile minut na zapłatę mandatu, zanim kartoteka sama zmieni status na „do aresztowania” (0 = bez terminu)
+/datum/config_entry/number/citation_payment_minutes
+	config_entry_value = 10
+	min_val = 0
+
 // Toggle defacation and all associated things
 /datum/config_entry/flag/shitting_enabled
 

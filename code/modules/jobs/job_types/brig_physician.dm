@@ -51,6 +51,5 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/security
 
-	implants = list(/obj/item/implant/security_down) // AQ EDIT
 
 	chameleon_extras = /obj/item/gun/syringe

@@ -13,4 +13,6 @@
 					/obj/item/restraints/legcuffs/bola/energy = 7,
 					//obj/item/melee/classic_baton/police = 5   //AQ edit - replaced with police tonfa
 					/obj/item/melee/classic_baton/police/tonfa = 5,
-					/obj/item/citationinator = 10) // Citationinator (security/citationinator.dm)
+					/obj/item/citationinator = 10, // Citationinator (security/citationinator.dm)
+					/obj/item/law_planner = 4, // planer zarzutów (security/law_planner.dm)
+					/obj/item/holowarrant = 3) // projektor nakazu (security/holowarrant.dm)

@@ -812,6 +812,9 @@ ROUNDSTART_BLUESPACE_MINERS 2
 ## Enable the bluespace miner research node?
 BSMINER_RESEARCHABLE
 
+## AQ Minutes to pay a citation before the record is set to Arrest (0 = no deadline)
+CITATION_PAYMENT_MINUTES 10
+
 ## AQ Is shitting enabled?
 SHITTING_ENABLED
 

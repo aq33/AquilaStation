@@ -317,15 +317,17 @@
 	TEST_ASSERT(!HAS_TRAIT(neighbour, TRAIT_IRRADIATED), "The neighbour of the mouse is irradiated before the pulse")
 	TEST_ASSERT(mouse.irradiate(), "The irradiated mouse sent out no pulse")
 	TEST_ASSERT(!COOLDOWN_FINISHED(mouse, pulse_cooldown), "The pulse did not start its cooldown")
-	// poza MC SSradiation nie przetwarza impulsów, więc przeliczamy je tu od razu
-	var/safety = 100
-	while(length(SSradiation.processing) && safety-- > 0)
-		var/datum/radiation_pulse_information/pulse_information = SSradiation.processing[1]
-		var/atom/source = pulse_information.source_ref?.resolve() || pulse_information.source_turf
-		if(isnull(source) || !length(pulse_information.turfs_to_process))
-			SSradiation.processing -= pulse_information
-			continue
-		SSradiation.pulse(source, pulse_information)
+	// poza MC SSradiation nie przetwarza impulsów, więc przeliczamy tu od razu impuls myszy. Tylko jej: w kolejce
+	// mogą czekać impulsy z wcześniejszych testów części, a przerwy MC_TICK_CHECK na wolnym runnerze zjadały limit pętli
+	var/datum/radiation_pulse_information/mouse_pulse
+	for(var/datum/radiation_pulse_information/pulse_information as anything in SSradiation.processing)
+		if(pulse_information.source_ref?.resolve() == mouse)
+			mouse_pulse = pulse_information
+	TEST_ASSERT(mouse_pulse, "The mouse pulse is not queued")
+	var/safety = 1000
+	while(length(mouse_pulse.turfs_to_process) && safety-- > 0)
+		SSradiation.pulse(mouse, mouse_pulse)
+	SSradiation.processing -= mouse_pulse
 	TEST_ASSERT(HAS_TRAIT(neighbour, TRAIT_IRRADIATED), "The neighbour of the mouse got no radiation")
 	TEST_ASSERT(!HAS_TRAIT(mouse, TRAIT_IRRADIATED), "The mouse irradiated itself")
 	TEST_ASSERT(isnull(event.spawn_mouse(null)), "A mouse spawned nowhere")

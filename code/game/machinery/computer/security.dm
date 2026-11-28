@@ -179,12 +179,14 @@
 		if(!sec_record)
 			continue
 
+		if(!GLOB.data_core.set_criminal_status(sec_record, status_to_set, "Obwód ([parent.get_creator()])", "ustawione przez obwód", announce = FALSE)) // jedno zbiorcze ogłoszenie niżej
+			continue
 		successful_set++
-		sec_record.fields["criminal"] = status_to_set
 		names_of_entries += target["name"]
 
 	if(successful_set > 0)
 		investigate_log("[names_of_entries.Join(", ")] have been set to [status_to_set] by [parent.get_creator()].", INVESTIGATE_RECORDS)
+		aq_security_announce("Kartoteka: [names_of_entries.Join(", ")] – [aq_criminal_status_name(status_to_set)] (obwód).", aq_criminal_status_channels(status_to_set))
 		if(successful_set > COMP_SECURITY_ARREST_AMOUNT_TO_FLAG)
 			message_admins("Wpisy ochrony ([successful_set]) zostały ustawione na [status_to_set] przez [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
 		for(var/mob/living/carbon/human/human in GLOB.carbon_list) // carbon_list ma też małpy (Pun Pun)
@@ -956,25 +958,15 @@ What a mess.*/
 
 					if("Change Criminal Status")
 						if(active2)
-							var/old_field = active2.fields["criminal"]
-							switch(href_list["criminal2"])
-								if("none")
-									active2.fields["criminal"] = "None"
-								if("arrest")
-									active2.fields["criminal"] = "Arrest"
-								if("search")
-									active2.fields["criminal"] = "Search"
-								if("monitor")
-									active2.fields["criminal"] = "Monitor"
-								if("incarcerated")
-									active2.fields["criminal"] = "Incarcerated"
-								if("paroled")
-									active2.fields["criminal"] = "Paroled"
-								if("released")
-									active2.fields["criminal"] = "Discharged"
-							investigate_log("[active1.fields["name"]] has been set from [old_field] to [active2.fields["criminal"]] by [key_name(usr)].", INVESTIGATE_RECORDS)
-							for(var/mob/living/carbon/human/H in GLOB.carbon_list)
-								H.sec_hud_set_security_status()
+							// AQ EDIT START - zmiana statusu przez wspólny rdzeń kartoteki (powód, historia, radio): aquila/code/modules/security/criminal_status.dm
+							var/datum/data/record/target_record = active2
+							var/old_field = target_record.fields["criminal"]
+							var/new_status = list("none" = "None", "arrest" = "Arrest", "search" = "Search", "monitor" = "Monitor", "incarcerated" = "Incarcerated", "paroled" = "Paroled", "released" = "Discharged")[href_list["criminal2"]]
+							var/status_reason = new_status ? aq_ask_criminal_reason(usr, new_status) : null
+							// w trakcie pytania mógł zostać otwarty inny rekord albo konsola wylogowana
+							if(!isnull(status_reason) && active2 == target_record && authenticated && canUseSecurityRecordsConsole(usr, "status", null, target_record) && GLOB.data_core.set_criminal_status(target_record, new_status, aq_record_author(usr), status_reason))
+								investigate_log("[active1.fields["name"]] has been set from [old_field] to [active2.fields["criminal"]] by [key_name(usr)].", INVESTIGATE_RECORDS)
+							// AQ EDIT END
 					if("Delete Record (Security) Execute")
 						investigate_log("[key_name(usr)] has deleted the security records for [active1.fields["name"]].", INVESTIGATE_RECORDS)
 						if(active2)

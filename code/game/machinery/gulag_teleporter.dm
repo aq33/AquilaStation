@@ -162,7 +162,7 @@ The console is located at computer/gulag_teleporter.dm
 	if(id)
 		prisoner.equip_to_appropriate_slot(id)
 	if(R)
-		R.fields["criminal"] = "Incarcerated"
+		GLOB.data_core.set_criminal_status(R, "Incarcerated", "Teleporter obozu pracy") // AQ EDIT - wspólny rdzeń kartoteki (historia, HUD, radio)
 
 /obj/item/circuitboard/machine/gulag_teleporter
 	name = "teleporter obozu pracy (płytka maszyny)"

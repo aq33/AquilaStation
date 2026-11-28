@@ -97,6 +97,13 @@
 			"colour": "yellow",
 			"icon": "poo",
 			"sentence": 3000
+		},
+		{
+			"name": "Uchylanie się od grzywny",
+			"tooltip": "Niezapłacenie mandatu w terminie bez odwołania do Kapitana, Komendanta albo prawnika.",
+			"colour": "yellow",
+			"icon": "file-invoice-dollar",
+			"sentence": 3000
 		}
 	],
 	"Występki": [
@@ -306,6 +313,43 @@
 			"colour": "grey",
 			"icon": "heart",
 			"sentence": 360000
+		}
+	],
+	"Przewinienia dyscyplinarne": [
+		{
+			"name": "Niewykonanie rozkazu",
+			"tooltip": "Personel wojskowy: niewykonanie wyraźnego rozkazu przełożonego bez zagrożenia życia i zdrowia. Kara: degradacja o jeden stopień albo nagana.",
+			"colour": "teal",
+			"icon": "user-minus",
+			"sentence": 0
+		},
+		{
+			"name": "Opuszczenie posterunku",
+			"tooltip": "Personel wojskowy: zejście z wyznaczonego posterunku albo wachty bez zgody przełożonego. Kara: degradacja o jeden stopień.",
+			"colour": "teal",
+			"icon": "user-minus",
+			"sentence": 0
+		},
+		{
+			"name": "Sen na służbie",
+			"tooltip": "Personel wojskowy: sen na posterunku, przy konsoli albo na wachcie. Kara: nagana, przy powtórce degradacja.",
+			"colour": "teal",
+			"icon": "bed",
+			"sentence": 0
+		},
+		{
+			"name": "Nadużycie stanowiska",
+			"tooltip": "Personel wojskowy: użycie uprawnień, dostępu albo sprzętu służbowego dla własnej korzyści. Kara: degradacja o jeden stopień, przy szkodzie także zarzut karny.",
+			"colour": "teal",
+			"icon": "user-minus",
+			"sentence": 0
+		},
+		{
+			"name": "Niestosowne zachowanie wobec przełożonego",
+			"tooltip": "Personel wojskowy: lekceważenie, obraza albo ignorowanie przełożonego. Kara: nagana.",
+			"colour": "teal",
+			"icon": "comment-slash",
+			"sentence": 0
 		}
 	]
 }

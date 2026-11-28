@@ -1,4 +1,4 @@
-import { Button, Section } from 'tgui-core/components';
+import { Button, LabeledList, Section } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
@@ -9,13 +9,30 @@ type Data = {
   minutes: number;
   seconds: number;
   flash_charging: BooleanLike;
+  prisoner: string | null;
+  crimes: string | null;
+  paused: BooleanLike;
+  needs_prisoner: BooleanLike;
+  can_pardon: BooleanLike;
 };
 
 export const BrigTimer = (props) => {
   const { act, data } = useBackend<Data>();
-  const { timing, minutes, seconds, flash_charging } = data;
+  const {
+    timing,
+    minutes,
+    seconds,
+    flash_charging,
+    prisoner,
+    crimes,
+    paused,
+    needs_prisoner,
+    can_pardon,
+  } = data;
+  const locked = !!timing || !!paused;
+  const blocked = !timing && !!needs_prisoner && !prisoner;
   return (
-    <Window width={300} height={138}>
+    <Window width={340} height={250}>
       <Window.Content scrollable>
         <Section
           title="Zegar celi"
@@ -24,6 +41,8 @@ export const BrigTimer = (props) => {
               <Button
                 icon="clock-o"
                 selected={timing}
+                disabled={blocked}
+                tooltip={blocked ? 'Najpierw wpisz osadzonego' : undefined}
                 onClick={() => act(timing ? 'stop' : 'start')}
               >
                 {timing ? 'Zatrzymaj' : 'Uruchom'}
@@ -78,6 +97,56 @@ export const BrigTimer = (props) => {
           >
             Długi
           </Button>
+        </Section>
+        <Section
+          title="Osadzony"
+          buttons={
+            <>
+              {locked && (
+                <Button
+                  icon={paused ? 'play' : 'pause'}
+                  onClick={() => act(paused ? 'resume' : 'pause')}
+                >
+                  {paused ? 'Wznów' : 'Pauza'}
+                </Button>
+              )}
+              <Button
+                icon="gavel"
+                disabled={!can_pardon}
+                tooltip="Kapitan albo Komendant"
+                onClick={() => act('pardon')}
+              >
+                Ułaskaw
+              </Button>
+            </>
+          }
+        >
+          <LabeledList>
+            <LabeledList.Item
+              label="Imię"
+              buttons={
+                <Button
+                  icon="user"
+                  disabled={locked}
+                  onClick={() => act('set_prisoner')}
+                >
+                  Wybierz
+                </Button>
+              }
+            >
+              {prisoner || 'brak'}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Zarzuty"
+              buttons={
+                <Button icon="book" onClick={() => act('set_crimes')}>
+                  Z kodeksu
+                </Button>
+              }
+            >
+              {crimes || 'brak'}
+            </LabeledList.Item>
+          </LabeledList>
         </Section>
       </Window.Content>
     </Window>

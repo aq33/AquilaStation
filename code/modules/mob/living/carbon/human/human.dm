@@ -276,9 +276,13 @@
 						return
 					if(!HAS_TRAIT(H, TRAIT_SECURITY_HUD))
 						return
+					// AQ EDIT START - zmiana statusu przez wspólny rdzeń kartoteki (powód, historia, radio)
+					var/status_reason = aq_ask_criminal_reason(usr, setcriminal)
+					if(isnull(status_reason) || !sec_record || !H.canUseHUD() || !HAS_TRAIT(H, TRAIT_SECURITY_HUD))
+						return
 					investigate_log("[key_name(src)] has been set from [sec_record.fields["criminal"]] to [setcriminal] by [key_name(usr)].", INVESTIGATE_RECORDS)
-					sec_record.fields["criminal"] = setcriminal
-					sec_hud_set_security_status()
+					GLOB.data_core.set_criminal_status(sec_record, setcriminal, aq_record_author(usr), status_reason)
+					// AQ EDIT END
 				return
 
 			if(href_list["viewsec"])

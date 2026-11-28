@@ -95,7 +95,7 @@
 		// victim to wpis z akt ogólnych; akta ochrony mają to samo id
 		var/datum/data/crime/crime = GLOB.data_core.createCrimeEntry(citation_name, reason, issuer_name, time, fine)
 		GLOB.data_core.addCitation(victim.fields["id"], crime)
-		send_pda_alert(user, victim_name, "Otrzymujesz mandat w wysokości [fine] kredytów za „[citation_name]” od: [issuer_name]. Mandaty można opłacić w ochronie.")
+		send_pda_alert(user, victim_name, "Otrzymujesz mandat w wysokości [fine] kredytów za „[citation_name]” od: [issuer_name]. Mandaty można opłacić w ochronie.[aq_citation_deadline_text()]")
 		investigate_log("New Citation: <strong>[citation_name]</strong> Fine: [fine] | Added to [victim_name] by [key_name(user)] (citationinator)", INVESTIGATE_RECORDS)
 	else
 		investigate_log("Off-manifest Citation: <strong>[citation_name]</strong> Fine: [fine] | Printed for [victim_name] by [key_name(user)] (citationinator)", INVESTIGATE_RECORDS)
@@ -130,6 +130,8 @@
 	final_paper_text += "<tr><th>Wystawił: </th><td>[issuer_name]</td></tr>"
 	final_paper_text += "<tr><th>Czas: </th><td>[time]</td></tr>"
 	final_paper_text += "<tr><th>Kwota: </th><td>[fine] kr</td></tr>"
+	if(CONFIG_GET(number/citation_payment_minutes) > 0)
+		final_paper_text += "<tr><th>Termin zapłaty: </th><td>[CONFIG_GET(number/citation_payment_minutes)] min</td></tr>"
 	final_paper_text += "</table><br>"
 	final_paper_text += "Mandat można opłacić przy konsoli nakazów przy wejściu do brygu.<br><br>"
 	final_paper_text += "<i>Przyjęcie mandatu nie oznacza przyznania się do winy. Aby go zakwestionować, zwróć się do Kapitana, Szefa Ochrony albo prawnika na pokładzie.</i><br><br>"

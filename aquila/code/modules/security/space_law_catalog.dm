@@ -45,3 +45,12 @@ GLOBAL_LIST(space_law_catalog)
 		else if(istype(machine, /obj/machinery/netpod))
 			facilities["exile"] = TRUE
 	return facilities
+
+/// Suma wyroków za podane artykuły (decysekundy), te same liczby co terminal GenPop (bez okoliczności łagodzących i obciążających)
+/proc/aq_sentence_for_crimes(list/crime_names)
+	var/total = 0
+	for(var/list/category as anything in get_space_law_catalog())
+		for(var/list/crime as anything in category["crimes"])
+			if(crime["name"] in crime_names)
+				total += crime["sentence"]
+	return total
