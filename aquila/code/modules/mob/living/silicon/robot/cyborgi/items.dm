@@ -369,14 +369,9 @@
 	return ..()
 
 /obj/item/borg/sight/aquila_scanner/noir/aq_scan(turf/center)
-	. = list()
 	if(!center || !viewer)
-		return
-	for(var/atom/movable/thing in view(scan_range, viewer))
-		if(istype(thing, /obj/effect/decal/cleanable/blood) || istype(thing, /obj/effect/decal/cleanable/blood/trail_holder) || istype(thing, /obj/item/ammo_casing) || istype(thing, /obj/item/bullet_fragment))
-			. += thing
-		else if(isitem(thing) && thing.GetComponent(/datum/component/forensics))
-			. += thing
+		return list()
+	return aq_noir_targets(viewer, scan_range) // wspólne z trybem noir detektywa (detectivework/noir_vision.dm)
 
 // ================================================================ Medycyna
 

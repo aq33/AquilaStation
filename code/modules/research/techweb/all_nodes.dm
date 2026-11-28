@@ -665,7 +665,7 @@
 	display_name = "Implanty podskórne"
 	description = "Elektroniczne implanty umieszczane pod skórą."
 	prereq_ids = list("biotech")
-	design_ids = list("implanter", "implantcase", "implant_chem", "implant_security_down", "implant_tracking", "locator", "c38_trac") // AQ EDIT: implant_security_down
+	design_ids = list("implanter", "implantcase", "implant_chem", "implant_security_down", "implant_tracking", "locator", "c38_trac", "aq_breathalyzer") // AQ EDIT: implant_security_down, aq_breathalyzer
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

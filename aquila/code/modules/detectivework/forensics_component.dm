@@ -72,11 +72,11 @@
 	return length(result) ? result : null
 
 /// Luminol: jeśli jest zmyta krew, zaczyna świecić. Zwraca TRUE, jeśli coś się ujawniło.
-/datum/component/forensics/proc/luminol_react()
+/datum/component/forensics/proc/luminol_react(duration = LUMINOL_DURATION)
 	if(!length(latent_blood_DNA))
 		return FALSE
 	var/was_glowing = luminol_until > world.time
-	luminol_until = world.time + LUMINOL_DURATION
+	luminol_until = max(luminol_until, world.time + duration) // lampa UV nie skraca świecenia po luminolu
 	if(isitem(parent) && !luminol_overlay)
 		var/obj/item/I = parent
 		luminol_overlay = mutable_appearance('icons/effects/blood.dmi', "itemblood", appearance_flags = RESET_COLOR)
@@ -84,7 +84,7 @@
 		luminol_overlay.blend_mode = BLEND_INSET_OVERLAY
 		ADD_KEEP_TOGETHER(I, "luminol")
 		I.add_overlay(luminol_overlay)
-	addtimer(CALLBACK(src, PROC_REF(luminol_fade)), LUMINOL_DURATION, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(luminol_fade)), luminol_until - world.time, TIMER_UNIQUE|TIMER_OVERRIDE)
 	return !was_glowing
 
 /datum/component/forensics/proc/luminol_fade()
@@ -124,9 +124,9 @@
 	D?.wipe_latent_blood_DNA()
 
 /// Zwraca TRUE, jeśli luminol coś ujawnił
-/atom/proc/luminol_act()
+/atom/proc/luminol_act(duration = LUMINOL_DURATION)
 	var/datum/component/forensics/D = GetComponent(/datum/component/forensics)
-	return D?.luminol_react()
+	return D?.luminol_react(duration)
 
 /atom/proc/add_gunshot_residue(caliber)
 	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
@@ -187,6 +187,15 @@
 		add_log("<span class='info'><B>Ślady prochu:</B></span>")
 		for(var/line in residue_lines)
 			add_log(line)
+		. = TRUE
+
+	// Ślady czyszczenia (evidence_wiping.dm)
+	var/list/cleaning = A.return_cleaning_residue()
+	if(length(cleaning))
+		sleep(30)
+		add_log("<span class='info'><B>Ślady czyszczenia:</B></span>")
+		for(var/residue in cleaning)
+			add_log("[residue] ([cleaning[residue] >= GSR_FAINT_TIME ? "słabe" : "wyraźne"])")
 		. = TRUE
 
 	// Balistyka
