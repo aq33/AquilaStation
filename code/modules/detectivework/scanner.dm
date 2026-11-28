@@ -136,7 +136,7 @@
 			sleep(30)
 			add_log("<span class='info'><B>Odciski:</B></span>")
 			for(var/finger in fingerprints)
-				add_log("[finger]")
+				add_log("[finger][A.aq_trace_age("print", finger)]") // AQ EDIT - czas śladu, aquila/code/modules/detectivework/trace_times.dm
 			found_something = 1
 
 		// Blood
@@ -145,14 +145,14 @@
 			add_log("<span class='info'><B>Krew:</B></span>")
 			found_something = 1
 			for(var/B in blood)
-				add_log("Typ: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
+				add_log("Typ: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>[A.aq_trace_age("blood", B)]") // AQ EDIT - czas śladu
 
 		//Fibers
 		if(length(fibers))
 			sleep(30)
 			add_log("<span class='info'><B>Włókna:</B></span>")
 			for(var/fiber in fibers)
-				add_log("[fiber]")
+				add_log("[fiber][A.aq_trace_age("fiber", fiber)]") // AQ EDIT - czas śladu
 			found_something = 1
 
 		// AQ EDIT - utajona krew (luminol), ślady prochu i balistyka, aquila/code/modules/detectivework/forensics_component.dm

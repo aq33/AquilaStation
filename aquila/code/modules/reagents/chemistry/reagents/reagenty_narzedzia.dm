@@ -461,14 +461,19 @@
 	// Stary prawdziwy odcisk z dotyku sprzed nanobotów zostaje, ale bazowy zapis tego dotyku idzie pod nowy odcisk,
 	// także gdy stary już tu jest (rękawice sprawdza ..(): bez zapisu prawdziwego nie ma też podmienionego)
 	var/had_print = LAZYACCESS(fingerprints, real_print)
+	var/real_print_time = LAZYACCESS(print_times, real_print) // czas śladu (detectivework/trace_times.dm)
 	if(had_print)
 		LAZYREMOVE(fingerprints, real_print)
 	. = ..()
 	if(LAZYACCESS(fingerprints, real_print))
 		LAZYREMOVE(fingerprints, real_print)
 		LAZYSET(fingerprints, H.aq_fake_fingerprint, H.aq_fake_fingerprint)
+		LAZYSET(print_times, H.aq_fake_fingerprint, world.time)
+	LAZYREMOVE(print_times, real_print)
 	if(had_print)
 		LAZYSET(fingerprints, real_print, real_print)
+		if(real_print_time)
+			LAZYSET(print_times, real_print, real_print_time)
 
 /datum/reagent/fingerprint_nanites
 	name = "Odciskowe nanoboty"

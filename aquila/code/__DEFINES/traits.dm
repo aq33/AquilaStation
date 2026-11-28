@@ -5,6 +5,8 @@
 #define TRAIT_BOTTOMLESS_STOMACH	"bottomless_stomach"
 /// Postać płacze (emote *cry), pokazuje łzy na twarzy. Port Yogstation#15690
 #define TRAIT_CRYING				"crying"
+/// Okulary śledcze: noszący widzi, na co patrzą inni (aquila/code/modules/detectivework/eye_tracking.dm)
+#define TRAIT_AQ_EYE_TRACKING		"aq_eye_tracking"
 
 //non-mob traits
 

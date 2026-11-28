@@ -17,6 +17,8 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	/// Czy ślad świeci w tej chwili po luminolu
 	var/revealed = FALSE
+	/// Do kiedy świeci (luminol 60 s, lampa UV odnawia krótko)
+	var/revealed_until = 0
 	/// Nakładka emisyjna, dzięki której ślad widać w ciemności
 	var/mutable_appearance/glow
 
@@ -46,18 +48,20 @@
 	return ..()
 
 /// Ujawnia ślad. Zwraca TRUE, jeśli wcześniej był niewidoczny.
-/obj/effect/blood_trace/proc/reveal()
+/obj/effect/blood_trace/proc/reveal(duration = LUMINOL_DURATION)
 	. = !revealed
 	revealed = TRUE
+	revealed_until = max(revealed_until, world.time + duration)
 	invisibility = 0
 	mouse_opacity = MOUSE_OPACITY_ICON
 	if(!glow && icon_state)
 		glow = emissive_appearance(icon, icon_state, alpha = 150)
 		overlays += glow
-	addtimer(CALLBACK(src, PROC_REF(conceal)), LUMINOL_DURATION, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(conceal)), revealed_until - world.time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 
 /obj/effect/blood_trace/proc/conceal()
 	revealed = FALSE
+	revealed_until = 0
 	invisibility = INVISIBILITY_MAXIMUM
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	if(glow)
