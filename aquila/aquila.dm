@@ -3372,7 +3372,7 @@
 #include "code\modules\unit_tests\aquila_bronie_wybrane.dm"
 #endif
 // Komora testowa
-#include "code\modules\test_chamber\kits\pr_bronie_wybrane.dm"
+#include "code\modules\test_chamber\kits\pr_727_bronie.dm"
 // BRONIE Z PRZEGLĄDU: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
