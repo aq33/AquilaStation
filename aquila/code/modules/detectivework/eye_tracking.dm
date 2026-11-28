@@ -48,6 +48,9 @@
 	. = 0
 	if(QDELETED(A) || A == src || invisibility > SEE_INVISIBLE_LIVING)
 		return
+	// niewidomy nie patrzy (oględziny na ślepo baza przepuszcza, ale okulary nie mają czego śledzić)
+	if(is_blind(src))
+		return
 	// własny ekwipunek poza rękami nie jest widoczny z zewnątrz
 	if(isitem(A) && A.loc == src && !is_holding(A))
 		return

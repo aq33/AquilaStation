@@ -83,6 +83,11 @@
 	qdel(gone)
 	suspect.run_examinate(gone)
 	TEST_ASSERT_EQUAL(suspect.aq_gaze_reports, reports_before + 1, "Nieudane oględziny trafiły do okularów")
+	// niewidomy ogląda ten sam, nieusunięty przedmiot: oględziny przechodzą, ale spojrzenia nie ma
+	suspect.eye_blind = 10
+	suspect.run_examinate(looked_at)
+	suspect.eye_blind = 0
+	TEST_ASSERT_EQUAL(suspect.aq_gaze_reports, reports_before + 1, "Okulary pokazały spojrzenie niewidomego")
 
 	// Pluskwa: mikrofon na częstotliwości, którą da się nastawić na zwykłym radiu; nadaje tylko przez etui (bez podwójnych wiadomości)
 	var/obj/item/clothing/accessory/spy_bug/bug = allocate(/obj/item/clothing/accessory/spy_bug)
