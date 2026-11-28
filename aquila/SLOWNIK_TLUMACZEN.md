@@ -3776,6 +3776,8 @@ Oznaczenia w kolumnie uwag:
 | Paradox Clone | Klon paradoksu | m; istniejące |
 | Chrono Legionnaire | Chronolegionista | m; istniejące |
 | Voidwalker | Wędrowiec pustki | m; istniejące |
+| Fleshmind | Umysł z ciała | m; nowe (event mapy FTL, rój z Bubberstation) |
+| Wire Priest / Wirepriest Eye | Kapłan przewodów / oko kapłana przewodów | m / n; nowe |
 | Bingle | Bingiel | m; istniejące; l.mn. bingle |
 | Blood Worm | Krwawy robak | m; istniejące |
 | Spy | Szpieg | m; istniejące; l.mn. szpiedzy |
@@ -4146,6 +4148,12 @@ Oznaczenia w kolumnie uwag:
 | sleeper agent / numbers station | uśpiony agent / stacja numeryczna | m / ż; nowe |
 | bomb squad (Syndicate) | oddział saperów Syndykatu | m; nowe |
 | abandoned IPC | porzucony IPC | m; nowe |
+| wireweed / wireweed wall / wireweed door | mięsne przewody / ściana z przewodów / drzwi z przewodów | mnoga / ż / mnoga; nowe (Umysł z ciała) |
+| Processor Unit (fleshmind core) | jednostka procesorowa (rdzeń roju) | ż; nowe |
+| Babbler / Tormented Head / Whisperer / Psi-Modulator / Assembler / Spiker | bełkotnik / udręczona głowa / szeptacz / psi-modulator / montownia / kolcomiot | m / ż / m / m / ż / m; nowe |
+| Slicer / Floater / Globber / Stunner / Flesh Borg | Siekacz / Dryfowiec / Pluwacz / Paraliżer / Mięsny cyborg | m; nowe |
+| Himan / Treader / Phaser / Mechiver | Przerobiony człowiek / Gąsienicznik / Migotacz / Mechiwer | m; nowe |
+| Type 34-C Fleshdrive (Tyrant) | Mięsonapęd 34-C | m; nowe |
 
 ## 9. Obszary i pomieszczenia (nazwy `/area`)
 

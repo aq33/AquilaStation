@@ -271,6 +271,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	antags = list(
 		/datum/round_event_control/bingle,
 		/datum/round_event_control/voidwalker,
+		/datum/round_event_control/aquila_hex_fleshmind,
 	)
 
 /datum/hex_terrain/carp

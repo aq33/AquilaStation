@@ -196,9 +196,9 @@
 /**
  * Kandydaci do roli ducha z eventu: jak get_candidates() roli ducha (najpierw priority_candidates, potem przetasowane
  * duchy z ankiety), ale ankieta pokazuje nazwę roli z eventu zamiast nazwy preferencji (smar ma preferencję bingla)
- * i ma własną kategorię „nie pokazuj więcej” dla tego eventu.
+ * i ma własną kategorię „nie pokazuj więcej” dla tego eventu. req_hours: godziny gry żywą postacią (gdy config włącza limity).
  */
-/proc/aquila_hex_poll_ghost_role(datum/round_event/ghost_role/event, banning_key, role_preference)
+/proc/aquila_hex_poll_ghost_role(datum/round_event/ghost_role/event, banning_key, role_preference, req_hours = 0)
 	var/list/candidates = event.priority_candidates.Copy()
 	if(length(candidates) >= event.minimum_required || !(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return candidates
@@ -212,6 +212,7 @@
 		question = "Czy chcesz zgłosić się do specjalnej roli: '[role_name]'?", // ten sam tekst co w get_candidates()
 		role = role_preference,
 		check_jobban = banning_key,
+		req_hours = req_hours,
 		poll_time = 30 SECONDS,
 		ignore_category = "[event.type]",
 		role_name_text = role_name,
