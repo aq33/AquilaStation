@@ -584,6 +584,7 @@
 #include "code\modules\atmospherics\gasmixtures\generic_fire.dm"
 #include "code\modules\atmospherics\gas_prices.dm"
 #include "code\modules\atmospherics\machinery\airalarm_gas_tlv.dm"
+#include "code\modules\atmospherics\machinery\components\unary_devices\thermomachine.dm"
 #include "code\modules\atmospherics\gases\hydrogen.dm"
 #include "code\modules\atmospherics\gases\frezon.dm"
 #include "code\modules\atmospherics\gases\methane.dm"
